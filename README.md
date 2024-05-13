@@ -36,3 +36,23 @@ This is a comprehensive Conference Management System designed to facilitate the 
 
    ```bash
    git clone <repository_url>
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd <directory_path>
+
+3. Install dependencies:
+
+   ```bash
+   pip install -r requirements.txt
+
+4. Run the application:
+
+   ```bash
+   python app.py
+
+
+## Contributing
+
+Contributions are welcome! If you have suggestions, feature requests, or bug reports, please open an issue or submit a pull request.
