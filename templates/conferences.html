@@ -1,0 +1,377 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Conferences</title>
+{% endblock %}
+
+{% block body %}
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <nav class="site-nav">
+        <div class="container">
+            <div class="menu-bg-wrap">
+                <div class="site-navigation">
+                    <a href="{{ url_for('controllers.home_page') }}" class="logo m-0 float-start">CMS</a>
+
+                    <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
+                        {% if user_name is not none %}
+                            <li class="active" style="color: white"><a>Welcome, {{ user_name }}</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('controllers.home_page') }}">Home</a></li>
+                        <li class="active"><a href="{{ url_for('controllers.conference_page') }}">Conferences</a></li>
+                        {% if user_role == 'reviewer' %}
+                            <li><a href="{{ url_for('controllers.reviewer_dashboard') }}">Dashboard</a></li>
+                            <li><a href="{{ url_for('controllers.logout') }}">Logout</a></li>
+                        {% endif %}
+                        {% if user_role == 'author' %}
+                            <li><a href="{{ url_for('controllers.author_dashboard') }}">Dashboard</a></li>
+                            <li><a href="{{ url_for('controllers.logout') }}">Logout</a></li>
+                        {% endif %}
+                        {% if user_role == 'attendee' %}
+                            <li><a href="{{ url_for('controllers.qr_attendee') }}">QR</a></li>
+                            <li><a href="{{ url_for('controllers.conference_review') }}">Review Past Conferences</a></li>
+                            <li><a href="{{ url_for('controllers.logout') }}">Logout</a></li>
+                        {% endif %}
+                        {% if user_role == 'organizer' %}
+                            <li><a href="{{ url_for('controllers.conference_setup') }}">Set Up Conference</a></li>
+                            <li><a href="{{ url_for('controllers.logout') }}">Logout</a></li>
+                        {% endif %}
+                        {% if user_role is none %}
+                            <li><a href="{{ url_for('controllers.login') }}">Sign In</a></li>
+                            <li><a href="{{ url_for('controllers.register') }}">Sign Up</a></li>
+                        {% endif %}
+                    </ul>
+
+                    <a href="#"
+                       class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+                       data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div
+            class="hero page-inner overlay"
+            style="background-image: url('{{ url_for('static', filename='images/hero_bg_2.jpg') }}')"
+    >
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-9 text-center mt-5">
+                    <h1 class="heading" data-aos="fade-up">Conferences</h1>
+
+                    <nav
+                            aria-label="breadcrumb"
+                            data-aos="fade-up"
+                            data-aos-delay="200"
+                    >
+                        <ol class="breadcrumb text-center justify-content-center">
+                            <li class="breadcrumb-item"><a href="{{ url_for('controllers.home_page') }}">Home</a></li>
+                            <li
+                                    class="breadcrumb-item active text-white-50"
+                                    aria-current="page"
+                            >
+                                Conferences
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="section section-properties">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                    <div class="property-item">
+                        <a href="#" class="img">
+                            <img src="{{ url_for('static', filename='images/ai.jpg') }}" alt="Image"
+                                 class="img-fluid"/>
+                        </a>
+
+                        <div class="property-content">
+                            <div class="price mb-2"><span>Artificial Intelligence</span></div>
+                            <div>
+                    <span class="d-block mb-2 text-black-50"
+                    >5232 California Fake, Ave. 21BC</span
+                    >
+                                <span class="city d-block mb-3">Presenter: John Smith</span>
+
+                                <a
+                                        href="#"
+                                        class="btn btn-primary py-2 px-3"
+                                >See details</a
+                                >
+                                {% if user_role == 'attendee' %}
+                                    <a
+                                            href="{{ url_for('controllers.conference_register') }}"
+                                            class="btn btn-primary py-2 px-3"
+                                    >Register</a
+                                    >
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .item -->
+                </div>
+
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                    <div class="property-item">
+                        <a href="#" class="img">
+                            <img src="{{ url_for('static', filename='images/5g.jpg') }}" alt="Image"
+                                 class="img-fluid"/>
+                        </a>
+
+                        <div class="property-content">
+                            <div class="price mb-2"><span>5G Technology and Networks</span></div>
+                            <div>
+                                        <span class="d-block mb-2 text-black-50"
+                                        >5232 California Fake, Ave. 21BC</span
+                                        >
+                                <span class="city d-block mb-3">Presenter: Harry Potter</span>
+
+                                <a
+                                        href="#"
+                                        class="btn btn-primary py-2 px-3"
+                                >See details</a
+                                >
+                                {% if user_role == 'attendee' %}
+                                    <a
+                                            href="{{ url_for('controllers.conference_register') }}"
+                                            class="btn btn-primary py-2 px-3"
+                                    >Register</a
+                                    >
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .item -->
+                </div>
+
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                    <div class="property-item">
+                        <a href="#" class="img">
+                            <img src="{{ url_for('static', filename='images/cyber.jpg') }}" alt="Image"
+                                 class="img-fluid"/>
+                        </a>
+
+                        <div class="property-content">
+                            <div class="price mb-2"><span>Cybersecurity Innovations</span></div>
+                            <div>
+                                        <span class="d-block mb-2 text-black-50"
+                                        >5232 California Fake, Ave. 21BC</span
+                                        >
+                                <span class="city d-block mb-3">Presenter: Emma Stone</span>
+
+                                <a
+                                        href="#"
+                                        class="btn btn-primary py-2 px-3"
+                                >See details</a
+                                >
+                                {% if user_role == 'attendee' %}
+                                    <a
+                                            href="{{ url_for('controllers.conference_register') }}"
+                                            class="btn btn-primary py-2 px-3"
+                                    >Register</a
+                                    >
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .item -->
+                </div>
+
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                    <div class="property-item">
+                        <a href="#" class="img">
+                            <img src="{{ url_for('static', filename='images/quantum.jpg') }}" alt="Image"
+                                 class="img-fluid"/>
+                        </a>
+
+                        <div class="property-content">
+                            <div class="price mb-2"><span>Quantum Computing</span></div>
+                            <div>
+                                        <span class="d-block mb-2 text-black-50"
+                                        >5232 California Fake, Ave. 21BC</span
+                                        >
+                                <span class="city d-block mb-3">Presenter: Lionel Messi</span>
+
+                                <a
+                                        href="#"
+                                        class="btn btn-primary py-2 px-3"
+                                >See details</a
+                                >
+                                {% if user_role == 'attendee' %}
+                                    <a
+                                            href="{{ url_for('controllers.conference_register') }}"
+                                            class="btn btn-primary py-2 px-3"
+                                    >Register</a
+                                    >
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .item -->
+                </div>
+
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                    <div class="property-item">
+                        <a href="#" class="img">
+                            <img src="{{ url_for('static', filename='images/healthcare.jpg') }}" alt="Image"
+                                 class="img-fluid"/>
+                        </a>
+
+                        <div class="property-content">
+                            <div class="price mb-2"><span>Healthcare Technology</span></div>
+                            <div>
+                                        <span class="d-block mb-2 text-black-50"
+                                        >5232 California Fake, Ave. 21BC</span
+                                        >
+                                <span class="city d-block mb-3">Presenter: Jeff Hudson</span>
+
+                                <a
+                                        href="#"
+                                        class="btn btn-primary py-2 px-3"
+                                >See details</a
+                                >
+                                {% if user_role == 'attendee' %}
+                                    <a
+                                            href="{{ url_for('controllers.conference_register') }}"
+                                            class="btn btn-primary py-2 px-3"
+                                    >Register</a
+                                    >
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .item -->
+                </div>
+
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                    <div class="property-item">
+                        <a href="#" class="img">
+                            <img src="{{ url_for('static', filename='images/cloud.jpg') }}" alt="Image"
+                                 class="img-fluid"/>
+                        </a>
+
+                        <div class="property-content">
+                            <div class="price mb-2"><span>Cloud Computing Innovations</span></div>
+                            <div>
+                                        <span class="d-block mb-2 text-black-50"
+                                        >5232 California Fake, Ave. 21BC</span
+                                        >
+                                <span class="city d-block mb-3">Presenter: Luna Holmes</span>
+
+
+                                <a
+                                        href="#"
+                                        class="btn btn-primary py-2 px-3"
+                                >See details</a
+                                >
+                                {% if user_role == 'attendee' %}
+                                    <a
+                                            href="{{ url_for('controllers.conference_register') }}"
+                                            class="btn btn-primary py-2 px-3"
+                                    >Register</a
+                                    >
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .item -->
+                </div>
+
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                    <div class="property-item">
+                        <a href="#" class="img">
+                            <img src="{{ url_for('static', filename='images/IOT.jpg') }}" alt="Image"
+                                 class="img-fluid"/>
+                        </a>
+
+                        <div class="property-content">
+                            <div class="price mb-2"><span>Internet of Things Development</span></div>
+                            <div>
+                                        <span class="d-block mb-2 text-black-50"
+                                        >5232 California Fake, Ave. 21BC</span
+                                        >
+                                <span class="city d-block mb-3">Presenter: John Snow</span>
+
+                                <a
+                                        href="#.html"
+                                        class="btn btn-primary py-2 px-3"
+                                >See details</a
+                                >
+                                {% if user_role == 'attendee' %}
+                                    <a
+                                            href="{{ url_for('controllers.conference_register') }}"
+                                            class="btn btn-primary py-2 px-3"
+                                    >Register</a
+                                    >
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .item -->
+                </div>
+
+
+                <div class="col-xs-12 col-sm-6 col-md-6 col-lg-4">
+                    <div class="property-item">
+                        <a href="#" class="img">
+                            <img src="{{ url_for('static', filename='images/ai.jpg') }}" alt="Image"
+                                 class="img-fluid"/>
+                        </a>
+
+                        <div class="property-content">
+                            <div class="price mb-2"><span>Artificial Intelligence</span></div>
+                            <div>
+                    <span class="d-block mb-2 text-black-50"
+                    >5232 California Fake, Ave. 21BC</span
+                    >
+                                <span class="city d-block mb-3">Presenter: John Smith</span>
+
+                                <a
+                                        href="#"
+                                        class="btn btn-primary py-2 px-3"
+                                >See details</a
+                                >
+                                {% if user_role == 'attendee' %}
+                                    <a
+                                            href="{{ url_for('controllers.conference_register') }}"
+                                            class="btn btn-primary py-2 px-3"
+                                    >Register</a
+                                    >
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .item -->
+                </div>
+            </div>
+        </div>
+    </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+{% endblock %}

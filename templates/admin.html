@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block head %}
+    <title>Admin</title>
+{% endblock %}
+
+{% block body %}
+
+    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+        <!-- First table for users -->
+        <div>
+            <table class="table" style="margin: auto;">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.name }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>{{ user.role }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Second table for papers -->
+        <div>
+            <table class="table" style="margin: auto;">
+                <thead>
+                <tr>
+                    <th>Paper ID</th>
+                    <th>Paper Title</th>
+                    <th>Paper Author</th>
+                    <th>Paper Reviewer</th>
+                    <th>Paper Grade</th>
+                    <th>Paper Feedback</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for paper in papers %}
+                    <tr>
+                        <td>{{ paper.id }}</td>
+                        <td>{{ paper.title }}</td>
+                        <td>{{ paper.author }}</td>
+                        <td>{{ paper.reviewer }}</td>
+                        <td>{{ paper.grade }}</td>
+                        <td>{{ paper.feedback }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>QR Attendee</title>
+{% endblock %}
+{% block body %}
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <nav class="site-nav">
+        <div class="container">
+            <div class="menu-bg-wrap">
+                <div class="site-navigation">
+                    <a href="{{ url_for('controllers.home_page') }}" class="logo m-0 float-start">CMS</a>
+
+                    <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
+                        {% if user_name is not none %}
+                            <li class="active" style="color: white"><a>Welcome, {{ user_name }}</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('controllers.home_page') }}">Home</a></li>
+                        <li><a href="{{ url_for('controllers.conference_page') }}">Conferences</a></li>
+                        <li><a href="{{ url_for('controllers.qr_attendee') }}">QR</a></li>
+                        <li><a href="{{ url_for('controllers.conference_review') }}">Review Past Conferences</a></li>
+                        <li><a href="{{ url_for('controllers.logout') }}">Logout</a></li>
+                    </ul>
+
+                    <a href="#"
+                       class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+                       data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 mt-5" data-aos="fade-up" data-aos-delay="200">
+                    <form method="post">
+                        <div class="mb-3">
+                            <label for="card_number" class="form-label">Credit Card Number</label>
+                            <input type="text" name="card_number" id="card_number" class="form-control" placeholder="Enter card number" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="expiry_date" class="form-label">Expiry Date</label>
+                            <input type="text" name="expiry_date" id="expiry_date" class="form-control" placeholder="MM/YYYY" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="cvv" class="form-label">CVV</label>
+                            <input type="text" name="cvv" id="cvv" class="form-control" placeholder="Enter CVV" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="name_on_card" class="form-label">Name on Card</label>
+                            <input type="text" name="name_on_card" id="name_on_card" class="form-control" placeholder="Enter name on card" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="form-label">Amount ($)</label>
+                            <input type="text" name="amount" id="amount" class="form-control" value="30" readonly>
+                        </div>
+                        <input type="submit" value="Make Payment" class="btn btn-primary">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

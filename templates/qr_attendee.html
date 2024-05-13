@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block head %}
+    <title>QR Attendee</title>
+{% endblock %}
+{% block body %}
+    <div class="site-mobile-menu site-navbar-target">
+        <div class="site-mobile-menu-header">
+            <div class="site-mobile-menu-close">
+                <span class="icofont-close js-menu-toggle"></span>
+            </div>
+        </div>
+        <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <nav class="site-nav">
+        <div class="container">
+            <div class="menu-bg-wrap">
+                <div class="site-navigation">
+                    <a href="{{ url_for('controllers.home_page') }}" class="logo m-0 float-start">CMS</a>
+
+                    <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
+                        {% if user_name is not none %}
+                            <li class="active" style="color: white"><a>Welcome, {{ user_name }}</a></li>
+                        {% endif %}
+                        <li><a href="{{ url_for('controllers.home_page') }}">Home</a></li>
+                        <li><a href="{{ url_for('controllers.conference_page') }}">Conferences</a></li>
+                        <li class="active"><a href="{{ url_for('controllers.qr_attendee') }}">QR</a></li>
+                        <li><a href="{{ url_for('controllers.conference_review') }}">Review Past Conferences</a></li>
+                        <li><a href="{{ url_for('controllers.logout') }}">Logout</a></li>
+                    </ul>
+
+                    <a href="#"
+                       class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
+                       data-toggle="collapse" data-target="#main-navbar">
+                        <span></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4 mt-5">
+                <div class="card mt-5">
+                    <div class="card-header">{{ "QR Code Scanner" }}</div>
+
+                    <div class="card-body">
+                        <div style="border: 2px solid #000; display: flex; padding: 10px; justify-content: center; align-items: center; text-align: center; ">
+
+                            <img src="static/images/qr-image.jpg" class="img-fluid" alt="QR Code Scanner" style="height: fit-content">
+                        </div>
+                        <i class="icon-camera" style="font-size: 50px; display: flex; padding: 10px; justify-content: center; align-items: center; text-align: center;"></i>
+                        <p class="text-center">Click to open the QR code scanner.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
