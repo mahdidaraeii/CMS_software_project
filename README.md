@@ -40,7 +40,7 @@ This is a comprehensive Conference Management System designed to facilitate the 
 2. Navigate to the project directory:
 
    ```bash
-   cd <directory_path>
+   cd CMS_software_project
 
 3. Install dependencies:
 
