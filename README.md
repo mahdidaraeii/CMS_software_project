@@ -35,7 +35,7 @@ This is a comprehensive Conference Management System designed to facilitate the 
 1. Clone the repository:
 
    ```bash
-   git clone <repository_url>
+   git clone https://github.com/mahdidaraeii/CMS_software_project.git
 
 2. Navigate to the project directory:
 
