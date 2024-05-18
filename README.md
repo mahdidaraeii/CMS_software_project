@@ -51,7 +51,3 @@ This is a comprehensive Conference Management System designed to facilitate the 
 
    ```bash
    python app.py
-
-## Contributing
-
-Contributions are welcome! If you have suggestions, feature requests, or bug reports, please open an issue or submit a pull request.
